@@ -10,14 +10,12 @@ struct Post:Codable{
 }
 let url = URL(string: "https://jsonplaceholder.typicode.com/posts/1")!
 let task = URLSession.shared.dataTask(with: url){data ,response, error in
-    //let decoder = JSONDecoder()
-// FISt way get optional in string
-    if let data = data, let string = String( data:data,encoding: .utf8){
-        print(string)
-    }
-        //second way get like object poost via decoder
-   //  if let data = data, let string = String( data:data,encoding: .utf8){
-      //     print(string)
-     //  }
+    print("xxxxx")
+        //second way get like object poost via decoders
+    let decoder = JSONDecoder ()
+    if let data = data, let post = try? decoder.decode(Post.self, from: data ){
+        print("ffff"+post.title)
+       }
 }
 task.resume()
+print("xxxxx")
